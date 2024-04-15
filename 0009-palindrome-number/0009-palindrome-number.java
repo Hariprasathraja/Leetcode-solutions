@@ -1,21 +1,16 @@
 class Solution {
     public boolean isPalindrome(int x) {
-        String st=String.valueOf(x);
-        if(st.isEmpty()){
-            return false;
-        }else if(st.matches(".*[+-].*")){
-            return false;
-        }else{
-            int start=0;
-            int end=st.length()-1;
-            while(start<=end){
-                if(st.charAt(start)!=st.charAt(end)){
-                    return false;
-                }
-                start++;
-                end--;
-            }
-        }
+    int org=x,rev=0;
+
+    while(x>0){
+        int dig= x%10;
+        rev= rev*10+dig;
+        x=x/10;
+    }
+
+    if (org==rev){
         return true;
+    }
+    return false; 
     }
 }
