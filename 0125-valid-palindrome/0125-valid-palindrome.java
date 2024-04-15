@@ -3,14 +3,19 @@ class Solution {
         if(s.isEmpty()){
             return true;
         }
-        s=s.toLowerCase();
-        s=s.replaceAll("[^a-z\\d]","");
+        s=s.toLowerCase().replaceAll("[^a-z\\d]","");
         int start=0;
         int end=s.length()-1;
         while(start<=end){
-            if(s.charAt(start)!=s.charAt(end)){
-                return false;
-            }
+            if (!Character.isLetterOrDigit(s.charAt(start))) {
+        		start++;
+        	} else if(!Character.isLetterOrDigit(s.charAt(end))) {
+        		end--;
+        	}else{
+                if(s.charAt(start)!=s.charAt(end)){
+                    return false;
+                }
+            }     
             start++;
             end--;
         }
