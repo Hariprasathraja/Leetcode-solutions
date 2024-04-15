@@ -3,13 +3,17 @@ class Solution {
         if(s.isEmpty()){
             return true;
         }
-        String st=s.toLowerCase();
-        st=st.replaceAll("[^a-z\\d]","");
-        StringBuilder sb=new StringBuilder(st);
-        sb.reverse();
-        if(st.equals(sb.toString())){
-            return true;
+        s=s.toLowerCase();
+        s=s.replaceAll("[^a-z\\d]","");
+        int start=0;
+        int end=s.length()-1;
+        while(start<=end){
+            if(s.charAt(start)!=s.charAt(end)){
+                return false;
+            }
+            start++;
+            end--;
         }
-        return false;   
+        return true;   
     }
 }
