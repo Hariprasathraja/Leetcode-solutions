@@ -3,7 +3,7 @@ class Solution {
         if(s.isEmpty()){
             return true;
         }
-        s=s.toLowerCase().replaceAll("[^a-z\\d]","");
+        s=s.toLowerCase();
         int start=0;
         int end=s.length()-1;
         while(start<=end){
@@ -14,10 +14,10 @@ class Solution {
         	}else{
                 if(s.charAt(start)!=s.charAt(end)){
                     return false;
-                }
-            }     
+                }  
             start++;
             end--;
+        }
         }
         return true;   
     }
