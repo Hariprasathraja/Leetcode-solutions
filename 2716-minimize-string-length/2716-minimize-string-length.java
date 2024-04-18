@@ -4,7 +4,7 @@ class Solution {
     for(char i:s.toCharArray()){
         ar[i-'a']++;
     }
-   int len=0;
+    int len=0;
     for(int i:ar){
         if(i!=0){
         len++;
