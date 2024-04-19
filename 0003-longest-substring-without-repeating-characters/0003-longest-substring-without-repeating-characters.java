@@ -8,8 +8,8 @@ class Solution {
     while(i<s.length()){
         if(!set.contains(s.charAt(i))){
             set.add(s.charAt(i));
+            res=Math.max(res,i-left+1);
             i++;
-            res=Math.max(res,set.size());
         }else{
             set.remove(s.charAt(left));
             left++;
