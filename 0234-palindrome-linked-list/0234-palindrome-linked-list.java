@@ -10,16 +10,15 @@
  */
 class Solution {
     public boolean isPalindrome(ListNode head) {
+    StringBuilder sb=new StringBuilder();
     if(head==null){
         return true;
     }
-    String st="";
     ListNode tem=head;
     while(tem!=null){
-        st+=tem.val;
+        sb.append(tem.val);
         tem=tem.next;
     }
-    StringBuilder sb=new StringBuilder(st);
-    return st.equals(sb.reverse().toString());
+    return sb.toString().equals(sb.reverse().toString());
     }
 }
