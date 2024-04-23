@@ -11,7 +11,7 @@ class Solution {
             int sum=map.get(list2[i])+i;
             if (sum<minsum) {
                 minsum=sum;
-                common.clear();
+                common=new ArrayList();
                 common.add(list2[i]);
             }else if(sum==minsum){
                 common.add(list2[i]);
