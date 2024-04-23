@@ -7,14 +7,15 @@ class Solution {
         map.put(list1[i],i);
     }
     for(int i=0;i<list2.length;i++){
-        if(map.containsKey(list2[i])){
-            int sum=map.get(list2[i])+i;
+        String st=list2[i];
+        if(map.containsKey(st)){
+            int sum=map.get(st)+i;
             if (sum<minsum) {
                 minsum=sum;
                 common=new ArrayList();
-                common.add(list2[i]);
-            }else if(sum==minsum){
-                common.add(list2[i]);
+            }
+            if(sum==minsum){
+                common.add(st);
             }
         }
     }
