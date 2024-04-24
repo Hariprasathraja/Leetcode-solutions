@@ -2,12 +2,11 @@ class Solution {
     public String[] findWords(String[] words) {
     List<String>list=new ArrayList<>();
     for(String i:words){
-        String st=i.toLowerCase();
-        if(!st.matches(".*[^qwertyuiop].*")){
+        if(!i.matches(".*[^QWERTYUIOPqwertyuiop].*")){
             list.add(i);
-        }else if(!st.matches(".*[^asdfghjkl].*")){
+        }else if(!i.matches(".*[^ASDFGHJKLasdfghjkl].*")){
             list.add(i);
-        }else if(!st.matches(".*[^zxcvbnm].*")){
+        }else if(!i.matches(".*[^ZXCVBNMzxcvbnm].*")){
             list.add(i);
         }
     }
