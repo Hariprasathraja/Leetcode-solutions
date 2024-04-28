@@ -1,12 +1,8 @@
 class Solution {
-    public int firstUniqChar(String s) {
-        Map<Character,Integer>map=new HashMap<>();
+    public int firstUniqChar(String s){
         for(char i:s.toCharArray()){
-            map.put(i,map.getOrDefault(i,0)+1);
-        }
-        for(int i=0;i<s.length();i++){
-            if(map.get(s.charAt(i))==1){
-                return i;
+            if(s.indexOf(i)==s.lastIndexOf(i)){
+                return s.indexOf(i);
             }
         }
         return -1;
