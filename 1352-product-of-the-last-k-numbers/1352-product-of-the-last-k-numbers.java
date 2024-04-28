@@ -12,7 +12,7 @@ class ProductOfNumbers {
             prev*=num;
             list.add(prev);
         }else{
-            list.clear();
+            list=new ArrayList<>();
             list.add(1);
             prev=1;
         }
