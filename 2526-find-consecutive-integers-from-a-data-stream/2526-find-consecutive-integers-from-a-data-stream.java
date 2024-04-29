@@ -1,9 +1,9 @@
 class DataStream {
     int K,val,res;
     public DataStream(int value, int k) {
-            this.val=value;
-            this.K=k;   
-            this.res=0;
+            val=value;
+            K=k;   
+            res=0;
     }
     
     public boolean consec(int num) {
