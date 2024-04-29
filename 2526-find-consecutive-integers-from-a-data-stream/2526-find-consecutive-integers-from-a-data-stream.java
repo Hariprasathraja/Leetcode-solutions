@@ -1,16 +1,13 @@
 class DataStream {
-    int K=0,val=0,res=0;
+    int K,val,res;
     public DataStream(int value, int k) {
             val=value;
             K=k;   
+            res=0;
     }
     
     public boolean consec(int num) {
-        if(num!=val){
-            res=0;
-        }else{
-            res++;
-        }
+        res=(num==val)?res+1:0;
         return res>=K;
     }
 }
