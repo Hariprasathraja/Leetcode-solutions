@@ -1,17 +1,10 @@
 class Solution {
     public int[] countBits(int n) {
-        int result [] = new int[n+1];
-        for (int i = 0; i <= n; i++) {
-           result[i] = count(i);
+        int res[]= new int[n+1];
+        res[0]=0;
+        for (int i=1;i<=n;i++) {
+           res[i]=res[i/2]+(i&1);
        }
-       return result;
-    }
-    public static int count(int n){
-        int c=0;
-        while(n>0){
-            if(n%2==1) c++;
-            n/=2;
-        }
-        return c;
+       return res;
     }
 }
