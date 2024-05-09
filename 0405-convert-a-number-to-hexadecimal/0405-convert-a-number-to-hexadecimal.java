@@ -1,10 +1,10 @@
 class Solution {
     public String toHex(int num) {
         if(num==0) return "0";
-        char[] hex={'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'};
+        String hex="0123456789abcdef";
         String res="";
         while(num!=0){
-            res=hex[num & 15]+res;
+            res=hex.charAt(num & 15)+res;
             num>>>=4;
         }
         return res;
