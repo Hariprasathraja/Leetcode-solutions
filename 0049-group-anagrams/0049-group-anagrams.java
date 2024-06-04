@@ -5,13 +5,11 @@ class Solution {
             char[] ar=s.toCharArray();
             Arrays.sort(ar);
             String st=new String(ar);
-            if(map.containsKey(st)){
-                map.get(st).add(s);
-            }else{
+            if(!map.containsKey(st)){
                 map.put(st,new ArrayList<>());
-                map.get(st).add(s);
             }
+            map.get(st).add(s);
         }
-        return new ArrayList(map.values());
+        return new ArrayList<>(map.values());
     }
 }
