@@ -1,6 +1,5 @@
 class Solution {
     public int lengthOfLastWord(String s) {
-     StringBuilder sb=new StringBuilder();
         s=s.trim();
         int l=s.length()-1;
         int c=0;
