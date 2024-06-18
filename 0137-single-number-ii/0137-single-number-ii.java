@@ -1,14 +1,10 @@
 class Solution {
     public int singleNumber(int[] nums) {
-        Map<Integer,Integer> map=new HashMap<>();
+        int one=0,two=0;
         for(int i:nums){
-            map.put(i,map.getOrDefault(i,0)+1);
-            if(map.get(i)==3) map.remove(i);
+            one=(one^i) & ~two;
+            two=(two^i) & ~one;
         }
-        int res=0;
-        for(int i:map.keySet()){
-            res=i;
-        }
-        return res;
+        return one;
     }
 }
