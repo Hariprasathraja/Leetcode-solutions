@@ -9,9 +9,8 @@ class Solution {
                 }
                 st.pop();
                 int i=0;
-                char[] arr=str.toCharArray();
                 while(i<str.length()){
-                    st.push(arr[i++]);
+                    st.push(str.charAt(i++));
                 }
             }else{
                 st.push(c);
