@@ -3,9 +3,9 @@ class Solution {
         Stack<Character> st=new Stack<>();
         for(char c:s.toCharArray()){
             if(c==')'){
-                String str="";
+                StringBuilder str=new StringBuilder();
                 while(st.peek()!='('){
-                    str+=st.pop();
+                    str.append(st.pop());
                 }
                 st.pop();
                 int i=0;
