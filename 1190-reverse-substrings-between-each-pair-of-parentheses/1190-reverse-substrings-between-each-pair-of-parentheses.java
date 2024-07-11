@@ -3,14 +3,15 @@ class Solution {
         Stack<Character> st=new Stack<>();
         for(char c:s.toCharArray()){
             if(c==')'){
-                StringBuilder sb=new StringBuilder();
+                String str="";
                 while(st.peek()!='('){
-                    sb.append(st.pop());
+                    str+=st.pop();
                 }
                 st.pop();
                 int i=0;
-                while(i<sb.length()){
-                    st.push(sb.charAt(i++));
+                char[] arr=str.toCharArray();
+                while(i<str.length()){
+                    st.push(arr[i++]);
                 }
             }else{
                 st.push(c);
