@@ -1,12 +1,7 @@
 class Solution {
     public int maximumGain(String s, int x, int y) {
-        if(x>y){
-            return maxscore( s, y, x, 'a', 'b');
-        }else{
-            return maxscore( s, x, y, 'b', 'a');
-        }
-    }
-    public int maxscore(String s, int low, int high, char start, char end){
+        int high=Math.max(x,y) ,low=Math.min(x,y);
+        char start=(x>y)?'a':'b' ,end=(x>y)?'b':'a';
         Stack<Character> st=new Stack<>();
         int gain=0;
         for(char c:s.toCharArray()){
