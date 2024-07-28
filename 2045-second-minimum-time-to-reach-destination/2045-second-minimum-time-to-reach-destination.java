@@ -1,71 +1,42 @@
 class Solution {
     public int secondMinimum(int n, int[][] edges, int time, int change) {
-         List<List<Integer>> graph = new ArrayList<>();
-        for (int i = 0; i < n; i++) graph.add(new ArrayList<>());
+        List<Integer>[] g = new List[n + 1];
+        Arrays.setAll(g, k -> new ArrayList<>());
         for (int[] e : edges) {
-            graph.get(e[0] - 1).add(e[1] - 1);
-            graph.get(e[1] - 1).add(e[0] - 1);
+            int u = e[0], v = e[1];
+            g[u].add(v);
+            g[v].add(u);
         }
-        
-        List<TreeSet<Integer>> minDists = new ArrayList<>();
-        // Treeset helps de-dupe the 1st and 2nd min distances.
-        for (int i = 0; i < n; i++) minDists.add(new TreeSet<>());
-        
-        // Prep Dijkstra.
-        PriorityQueue<int[]> pq = new PriorityQueue<>(10,
-                                  (o1, o2) -> (o1[1] - o2[1]));
-        pq.offer(new int[]{0, 0});
-        
-        // Main logic.
-        PriorityQueue<Integer> res = new PriorityQueue<>();
-        while (!pq.isEmpty()) {
-            int[] cur = pq.poll();
-            int curNode = cur[0];
-            int curDist = cur[1];
-            
-            // Dummy node.
-            if (minDists.get(curNode).size() == 2 &&
-                curDist > minDists.get(curNode).last()) {
-                continue;
-            }
-            
-            // Best First Expansion.
-            for (int next : graph.get(curNode)) {
-                // cur -> n;
-                int nextDist = time + curDist;
-                
-                // Must record arrival time for dest.
-                if (next == n - 1) {
-                    res.add(nextDist);
-                }
-                
-                // Traffic light correction. Must wait until green.
-                if ((nextDist / change) % 2 == 1) {
-                    nextDist = ((nextDist / change) + 1) * change;
-                }
-                
-                // Dup distance found.
-                if (minDists.get(next).contains(nextDist)) {
-                    continue;
-                }
-                
-                // Push departure time to queue and update min records.
-                if (minDists.get(next).size() < 2) {
-                    minDists.get(next).add(nextDist);
-                    pq.offer(new int[]{next, nextDist});
-                } else if (minDists.get(next).last() > nextDist){
-                    minDists.get(next).remove(minDists.get(next).last());
-                    minDists.get(next).add(nextDist);
-                    pq.offer(new int[]{next, nextDist});
+        Deque<int[]> q = new LinkedList<>();
+        q.offerLast(new int[] {1, 0});
+        int[][] dist = new int[n + 1][2];
+        for (int i = 0; i < n + 1; ++i) {
+            Arrays.fill(dist[i], Integer.MAX_VALUE);
+        }
+        dist[1][1] = 0;
+        while (!q.isEmpty()) {
+            int[] e = q.pollFirst();
+            int u = e[0], d = e[1];
+            for (int v : g[u]) {
+                if (d + 1 < dist[v][0]) {
+                    dist[v][0] = d + 1;
+                    q.offerLast(new int[] {v, d + 1});
+                } else if (dist[v][0] < d + 1 && d + 1 < dist[v][1]) {
+                    dist[v][1] = d + 1;
+                    if (v == n) {
+                        break;
+                    }
+                    q.offerLast(new int[] {v, d + 1});
                 }
             }
         }
-        
-        int top = res.peek();
-        while (res.peek() == top) {
-            res.poll();
+        int ans = 0;
+        for (int i = 0; i < dist[n][1]; ++i) {
+            ans += time;
+            if (i < dist[n][1] - 1 && (ans / change) % 2 == 1) {
+                ans = (ans + change) / change * change;
+            }
         }
-        
-        return res.poll();
+        return ans;
     }
 }
