@@ -8,11 +8,10 @@ class Solution {
                 list.add(sum);
             }
         }
-        Integer[] arr=list.toArray(new Integer[0]);
-        Arrays.sort(arr);
+        Collections.sort(list);
         long sum=0;
         for(int i=left-1;i<right;i++){
-            sum+=arr[i];
+            sum+=list.get(i);
             sum%=1_000_000_007;
         }
         return (int)sum;
