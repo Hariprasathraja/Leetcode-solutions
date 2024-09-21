@@ -1,8 +1,8 @@
 class Solution {
     public List<Integer> lexicalOrder(int n) {
         List<Integer> res=new ArrayList<>();
-        int cur=1,len=0;
-        while(len<n){
+        /*int cur=1;
+        while(res.size()<n){
             res.add(cur);
             len++;
             if(cur*10<=n) cur*=10;
@@ -12,10 +12,13 @@ class Solution {
                 }
                 cur+=1;
             }
+        }*/
+        
+        for(int i=1;i<=9;i++){
+            dfs(res,i,n);
         }
         return res;
     }
-    /*
     public void dfs(List<Integer> res, int cur, int n){
         if(cur>n) return;
         res.add(cur);
@@ -27,5 +30,4 @@ class Solution {
             else break;
         }
     }
-    */
 }
