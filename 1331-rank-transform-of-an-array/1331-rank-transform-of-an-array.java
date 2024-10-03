@@ -6,8 +6,8 @@ class Solution {
         int j=1;
         for(int i=0;i<clone.length;i++){
             if(!map.containsKey(clone[i])){
-                map.put(clone[i],i+j);
-            }else j--;
+                map.put(clone[i],j++);
+            }
         }
         for(int i=0;i<arr.length;i++){
             arr[i]=map.get(arr[i]);
