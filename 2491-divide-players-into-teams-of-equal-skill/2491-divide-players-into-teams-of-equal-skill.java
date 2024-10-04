@@ -1,4 +1,4 @@
-/*class Solution {
+class Solution {
     public long dividePlayers(int[] skill) {
         if(skill.length%2!=0) return -1;
         Arrays.sort(skill);
@@ -14,8 +14,7 @@
         return res;
     }
 }
-*/
-class Solution {
+/*class Solution {
     public long dividePlayers(int[] skill) {
         int n=skill.length;
         if(n%2!=0) return -1;
@@ -40,4 +39,4 @@ class Solution {
         }
         return res;
     }
-}
+}*/
