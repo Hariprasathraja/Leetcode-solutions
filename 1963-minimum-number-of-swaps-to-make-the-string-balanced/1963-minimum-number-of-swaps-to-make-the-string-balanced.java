@@ -4,9 +4,10 @@ class Solution {
         for(char c: s.toCharArray()){
             if(c=='['){
                 imbalance--;
-            }else imbalance++;
-            
-            max=Math.max(max,imbalance);
+            }else{
+                imbalance++;
+                max=Math.max(max,imbalance);
+            }
         }
         return (max+1)/2;
     }
