@@ -16,39 +16,29 @@
 class Solution {
     public TreeNode replaceValueInTree(TreeNode root) {
         if(root==null) return null;
-        
+        int curLevelSum=root.val;
         Queue<TreeNode> queue=new LinkedList<>();
         queue.offer(root);
-        root.val=0;
+        root.val*=-1;
         
         while(!queue.isEmpty()){
             int levelSum=0;
             int size=queue.size();
-            List<TreeNode> list=new ArrayList<>();
             
             for(int i=0;i<size;i++){
                 TreeNode node=queue.poll();
-                list.add(node);
+                int childSum=0;
+                if(node.left!=null) childSum+=node.left.val;
+                if(node.right!=null) childSum+=node.right.val;
+                levelSum+=childSum;
                 
-                if(node.left!=null){
-                    levelSum+=node.left.val;
-                    queue.offer(node.left);
-                }
-                if(node.right!=null){
-                    levelSum+=node.right.val;
-                    queue.offer(node.right);
-                }
+                if(node.left!=null) node.left.val=-childSum;
+                if(node.right!=null) node.right.val=-childSum;
+                node.val+=curLevelSum;
+                if(node.left!=null) queue.offer(node.left);
+                if(node.right!=null) queue.offer(node.right);
             }
-            
-            for(TreeNode node: list){
-                int cousinSum=levelSum;
-                
-                if(node.left!=null) cousinSum-=node.left.val;
-                if(node.right!=null) cousinSum-=node.right.val;
-                
-                if(node.left!=null) node.left.val=cousinSum;
-                if(node.right!=null) node.right.val=cousinSum;
-            }
+            curLevelSum=levelSum;
         }
     return root;
     }
