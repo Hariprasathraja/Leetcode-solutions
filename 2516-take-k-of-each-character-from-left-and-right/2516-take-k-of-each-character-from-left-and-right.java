@@ -17,7 +17,7 @@ class Solution {
                 freq[s.charAt(left)-'a']++;
                 left++;
             }
-            res=Math.min(res,left+(n-right-1));
+            res=Math.min(res,n-(right-left+1));
         }
         return res;
     }
